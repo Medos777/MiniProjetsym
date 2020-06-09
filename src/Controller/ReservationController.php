@@ -17,6 +17,8 @@ class ReservationController extends AbstractController
 {
     /**
      * @Route("/", name="reservation_index", methods={"GET"})
+     * @param ReservationRepository $reservationRepository
+     * @return Response
      */
     public function index(ReservationRepository $reservationRepository): Response
     {
@@ -27,6 +29,8 @@ class ReservationController extends AbstractController
 
     /**
      * @Route("/new", name="reservation_new", methods={"GET","POST"})
+     * @param Request $request
+     * @return Response
      */
     public function new(Request $request): Response
     {
@@ -50,6 +54,8 @@ class ReservationController extends AbstractController
 
     /**
      * @Route("/{id}", name="reservation_show", methods={"GET"})
+     * @param Reservation $reservation
+     * @return Response
      */
     public function show(Reservation $reservation): Response
     {
@@ -60,6 +66,9 @@ class ReservationController extends AbstractController
 
     /**
      * @Route("/{id}/edit", name="reservation_edit", methods={"GET","POST"})
+     * @param Request $request
+     * @param Reservation $reservation
+     * @return Response
      */
     public function edit(Request $request, Reservation $reservation): Response
     {
@@ -80,6 +89,9 @@ class ReservationController extends AbstractController
 
     /**
      * @Route("/{id}", name="reservation_delete", methods={"DELETE"})
+     * @param Request $request
+     * @param Reservation $reservation
+     * @return Response
      */
     public function delete(Request $request, Reservation $reservation): Response
     {

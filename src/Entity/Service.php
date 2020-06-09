@@ -30,7 +30,7 @@ class Service
     private $description;
 
     /**
-     * @ORM\OneToMany(targetEntity=reservation::class, mappedBy="service")
+     * @ORM\OneToMany(targetEntity=Reservation::class, mappedBy="Service")
      */
     private $id_service;
 
@@ -97,5 +97,11 @@ class Service
         }
 
         return $this;
+    }
+    public function __toString()
+    {
+
+        return (string) $this->libelle;
+
     }
 }

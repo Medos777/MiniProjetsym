@@ -17,6 +17,8 @@ class ClientController extends AbstractController
 {
     /**
      * @Route("/", name="client_index", methods={"GET"})
+     * @param ClientRepository $clientRepository
+     * @return Response
      */
     public function index(ClientRepository $clientRepository): Response
     {
@@ -27,6 +29,8 @@ class ClientController extends AbstractController
 
     /**
      * @Route("/new", name="client_new", methods={"GET","POST"})
+     * @param Request $request
+     * @return Response
      */
     public function new(Request $request): Response
     {
@@ -50,6 +54,8 @@ class ClientController extends AbstractController
 
     /**
      * @Route("/{id}", name="client_show", methods={"GET"})
+     * @param Client $client
+     * @return Response
      */
     public function show(Client $client): Response
     {
@@ -60,6 +66,9 @@ class ClientController extends AbstractController
 
     /**
      * @Route("/{id}/edit", name="client_edit", methods={"GET","POST"})
+     * @param Request $request
+     * @param Client $client
+     * @return Response
      */
     public function edit(Request $request, Client $client): Response
     {
@@ -80,6 +89,9 @@ class ClientController extends AbstractController
 
     /**
      * @Route("/{id}", name="client_delete", methods={"DELETE"})
+     * @param Request $request
+     * @param Client $client
+     * @return Response
      */
     public function delete(Request $request, Client $client): Response
     {

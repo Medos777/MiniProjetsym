@@ -40,7 +40,7 @@ class Client
     private $email;
 
     /**
-     * @ORM\OneToMany(targetEntity=reservation::class, mappedBy="client")
+     * @ORM\OneToMany(targetEntity=Reservation::class, mappedBy="Client")
      */
     private $id_cli;
 
@@ -131,5 +131,11 @@ class Client
         }
 
         return $this;
+    }
+    public function __toString()
+    {
+
+        return (string) $this->nom;
+
     }
 }
