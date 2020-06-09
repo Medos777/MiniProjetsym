@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\ServiceRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -26,6 +28,16 @@ class Service
      * @ORM\Column(type="string", length=255)
      */
     private $description;
+
+    /**
+     * @ORM\OneToMany(targetEntity=reservation::class, mappedBy="service")
+     */
+    private $id_service;
+
+    public function __construct()
+    {
+        $this->id_service = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -52,6 +64,37 @@ class Service
     public function setDescription(string $description): self
     {
         $this->description = $description;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|reservation[]
+     */
+    public function getIdService(): Collection
+    {
+        return $this->id_service;
+    }
+
+    public function addIdService(reservation $idService): self
+    {
+        if (!$this->id_service->contains($idService)) {
+            $this->id_service[] = $idService;
+            $idService->setService($this);
+        }
+
+        return $this;
+    }
+
+    public function removeIdService(reservation $idService): self
+    {
+        if ($this->id_service->contains($idService)) {
+            $this->id_service->removeElement($idService);
+            // set the owning side to null (unless already changed)
+            if ($idService->getService() === $this) {
+                $idService->setService(null);
+            }
+        }
 
         return $this;
     }

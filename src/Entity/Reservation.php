@@ -27,6 +27,16 @@ class Reservation
      */
     private $etat;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=Service::class, inversedBy="id_service")
+     */
+    private $service;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Client::class, inversedBy="id_cli")
+     */
+    private $client;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -52,6 +62,30 @@ class Reservation
     public function setEtat(string $etat): self
     {
         $this->etat = $etat;
+
+        return $this;
+    }
+
+    public function getService(): ?Service
+    {
+        return $this->service;
+    }
+
+    public function setService(?Service $service): self
+    {
+        $this->service = $service;
+
+        return $this;
+    }
+
+    public function getClient(): ?Client
+    {
+        return $this->client;
+    }
+
+    public function setClient(?Client $client): self
+    {
+        $this->client = $client;
 
         return $this;
     }
